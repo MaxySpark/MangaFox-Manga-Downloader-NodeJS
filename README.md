@@ -1,6 +1,7 @@
 # MangaFox-Manga-Downloader-NodeJS
 MangaFox Manga Downloader Using NodeJS
-
+Requirement `node.js`
+Download The Repository or Clone it Then-  
 ###first open a terminal in the folder and enter the commands
 ####$ npm install
 ####$ node app -n <Manga Name> -c <Chapter Serial Number>
