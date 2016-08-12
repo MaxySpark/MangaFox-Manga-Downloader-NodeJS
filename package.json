@@ -1,0 +1,16 @@
+{
+  "name": "manga-downloader-nodejs",
+  "version": "1.0.0",
+  "description": "Download Manga",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MaxySpark",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "request": "^2.74.0",
+    "yargs": "^4.8.1"
+  }
+}
