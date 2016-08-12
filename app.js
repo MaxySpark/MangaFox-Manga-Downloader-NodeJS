@@ -109,7 +109,7 @@ function download(mangaObj) {
     var Volume = mangaObj.volume_name;
     var Chapter = mangaObj.chapter;
     var Title = mangaObj.chapter_title;
-    if(Title.length >30) {
+    if(Title.length >70) {
         Title = 'Chapter '+mangaObj.id;
     }
     var dir = "./downloads/"+mangaObj.chapter_name+' ('+Title+')'; 
