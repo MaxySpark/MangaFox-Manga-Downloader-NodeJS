@@ -19,6 +19,7 @@ var argv = require('yargs').option({
 var i,c=0;
 var images = [], volumes= [], main_list = [];
 var nextUrl;
+var dirName,dirName2;
 var manga = argv.name.toLowerCase();
 var mangaName = manga.replace(/ /g, "_");
 var urlMain = "http://mangafox.me/manga/"+mangaName+"/";
@@ -32,7 +33,10 @@ request({
         var vn = 0;
         var volume_data = [],titles = [];
         var tn = 0;
-
+        $("#title > h1").each(function(){
+            dirName = $(this).html();
+            dirName = dirName.replace(' Manga','');
+        })
         $(".volume").each(function() {
             var volume = $(this).html();
             volume = volume.replace(/<.*>/,"").replace("Volume ","v");
@@ -112,8 +116,11 @@ function download(mangaObj) {
     if(Title.length >70) {
         Title = 'Chapter '+mangaObj.id;
     }
-    var dir = "./downloads/"+mangaObj.chapter_name+' ('+Title+')'; 
-    var downloadDir = "downloads/"+mangaObj.chapter_name+' ('+Title+')';
+    dirName2 = './downloads/'+dirName;
+    
+
+    var dir = "./downloads/"+dirName+'/'+mangaObj.chapter_name+' ('+Title+')'; 
+    var downloadDir = "downloads/"+dirName+'/'+mangaObj.chapter_name+' ('+Title+')';
     var Furl = mangaObj.url;
     var page = 0;
     console.log('\nNow Downloading : '+mangaObj.chapter_name+' ('+Title+')\n');
@@ -135,7 +142,9 @@ function download(mangaObj) {
                 $(".read_img > a > img").each(function() {
                     var img_link = $(this).attr('src');
                     images.push(img_link);
-                    
+                    if (!fs.existsSync(dirName2)){
+                        fs.mkdirSync(dirName2);
+                    }
                     if (!fs.existsSync(dir)){
                         fs.mkdirSync(dir);
                     }
