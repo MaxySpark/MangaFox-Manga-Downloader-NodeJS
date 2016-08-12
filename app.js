@@ -100,7 +100,7 @@ request({
             console.log('('+element.id+') '+element.chapter_name);
         });
         
-        download(main_list[argv.c + 1]);
+        download(main_list[argv.c - 1]);
        
     }
 });
@@ -108,8 +108,8 @@ function download(mangaObj) {
     
     var Volume = mangaObj.volume_name;
     var Chapter = mangaObj.chapter;
-    var dir = "./"+mangaObj.chapter_name+' ('+mangaObj.chapter_title+')'; 
-    var downloadDir = mangaObj.chapter_name+' ('+mangaObj.chapter_title+')';
+    var dir = "./downloads/"+mangaObj.chapter_name+' ('+mangaObj.chapter_title+')'; 
+    var downloadDir = "downloads/"+mangaObj.chapter_name+' ('+mangaObj.chapter_title+')';
     var Furl = mangaObj.url;
     readNextRequest(Furl);    
 
