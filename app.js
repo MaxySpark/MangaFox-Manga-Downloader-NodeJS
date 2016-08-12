@@ -16,7 +16,7 @@ var argv = require('yargs').option({
     }
 }).help('help').alias('help','h').argv;
 
-var i,a=0,b=0,c=0;
+var i,c=0;
 var images = [], volumes= [], main_list = [];
 var nextUrl;
 var manga = argv.name.toLowerCase();
@@ -105,14 +105,17 @@ request({
     }
 });
 function download(mangaObj) {
-    
+    var a=0,b=0;
     var Volume = mangaObj.volume_name;
     var Chapter = mangaObj.chapter;
     var dir = "./downloads/"+mangaObj.chapter_name+' ('+mangaObj.chapter_title+')'; 
     var downloadDir = "downloads/"+mangaObj.chapter_name+' ('+mangaObj.chapter_title+')';
     var Furl = mangaObj.url;
-    readNextRequest(Furl);    
+    var page = 0;
+    console.log('\nNow Downloading : '+mangaObj.chapter_name+' ('+mangaObj.chapter_title+')\n');
 
+    readNextRequest(Furl);    
+    
     function readNextRequest(url) {
         request({
             url: url,
@@ -124,6 +127,7 @@ function download(mangaObj) {
             else {
                 var $ = cheerio.load(body);
                 // console.log(++b);
+                page = ($(".l > select > option").length / 2) - 1;
                 $(".read_img > a > img").each(function() {
                     var img_link = $(this).attr('src');
                     images.push(img_link);
@@ -133,6 +137,9 @@ function download(mangaObj) {
                     }
                     request(img_link).pipe(fs.createWriteStream(downloadDir+'/'+((a++)+1)+'.jpg')).on('finish', function(response) {         
                         console.log("Download Completed : "+(++b));
+                        if(b==page) {
+                            console.log('\nDownloading Completed : '+mangaObj.chapter_name+' ('+mangaObj.chapter_title+')\n');
+                        }
                         });
                 });
                 $(".read_img > a").each(function() {
@@ -144,19 +151,18 @@ function download(mangaObj) {
                     readNextRequest(nextUrl);
                 } else {
                     // downloadLoop(images);
-                    console.log('Completed');
                 }
                 
             }
         });
     }
 
-    function downloadLoop(urls) {
-        for(i=0;i<urls.length;i++){
-            request(urls[i]).pipe(fs.createWriteStream('Chapter_0/'+(i+1)+'.jpg')).on('finish', function(response) {         
-                console.log("Download Completed : "+(++b)+'/'+i);
-                });
+    // function downloadLoop(urls) {
+    //     for(i=0;i<urls.length;i++){
+    //         request(urls[i]).pipe(fs.createWriteStream('Chapter_0/'+(i+1)+'.jpg')).on('finish', function(response) {         
+    //             console.log("Download Completed : "+(++b)+'/'+i);
+    //             });
             
-        }
-    }
+    //     }
+    // }
 }
