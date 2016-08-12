@@ -5,12 +5,12 @@ Requirement `node.js`
 
 Download The Repository or Clone it Then- -
 ###first open a terminal in the folder and enter the commands
-####$ npm install
-####$ node app -n <Manga Name> -c <Chapter Serial Number>
+####`$ npm install`
+####`$ node app -n <Manga Name> -c <Chapter Serial Number>`
 
 ###Example
 
-####$ node app - n "bleach" -c 502
+####`$ node app - n "bleach" -c 502`
 
 ![Scrrenshot 1](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga1.JPG "Scrrenshot 1")
 
