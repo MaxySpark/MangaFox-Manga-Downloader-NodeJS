@@ -10,7 +10,7 @@ Download The Repository or Clone it Then- -
 
 ###Example
 
-####`$ node app - n "bleach" -c 502`
+####`$ node app -n "bleach" -c 502`
 
 ![Scrrenshot 1](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga1.JPG "Scrrenshot 1")
 
