@@ -142,6 +142,9 @@ function download(mangaObj) {
                 $(".read_img > a > img").each(function() {
                     var img_link = $(this).attr('src');
                     images.push(img_link);
+                    if (!fs.existsSync('./downloads/')){
+                        fs.mkdirSync('./downloads/');
+                    }
                     if (!fs.existsSync(dirName2)){
                         fs.mkdirSync(dirName2);
                     }
