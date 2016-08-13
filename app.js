@@ -13,16 +13,25 @@ var argv = require('yargs').option({
         alias:[ 'ch','c','cn'],
         description: "Number Of The Manga Chapter",
         type: 'number'
+    },
+    range : {
+        // demand : true,
+        alias:[ 'r'],
+        description: "Number Of The Manga Chapter",
+        type: 'number'
     }
 }).help('help').alias('help','h').argv;
 
 var i,c=0;
 var images = [], volumes= [], main_list = [];
+
 var nextUrl;
 var dirName,dirName2;
 var manga = argv.name.toLowerCase();
 var mangaName = manga.replace(/ /g, "_");
 var urlMain = "http://mangafox.me/manga/"+mangaName+"/";
+
+var chap = argv.c;
 request({
     url: urlMain
 },(err, res, body) => {
@@ -93,18 +102,15 @@ request({
         volume_data.reverse();
         main_list.reverse();
 
-        // console.log(main_list);
-        // volume_data.forEach(function(element) {
-        //     for(i=0;i<element.ch_data.length;i++){
-        //     console.log('('+element.ch_data[i].id+') '+element.ch_data[i].chapter_name);
-        // }
-        // });
-
         main_list.forEach(function(element) {
             console.log('('+element.id+') '+element.chapter_name+' '+element.chapter_title);
         });
         
+        
         download(main_list[argv.c - 1]);
+        
+            
+            
        
     }
 });
@@ -117,8 +123,6 @@ function download(mangaObj) {
         Title = 'Chapter '+mangaObj.id;
     }
     dirName2 = './downloads/'+dirName;
-    
-
     var dir = "./downloads/"+dirName+'/'+mangaObj.chapter_name+' ('+Title+')'; 
     var downloadDir = "downloads/"+dirName+'/'+mangaObj.chapter_name+' ('+Title+')';
     var Furl = mangaObj.url;
@@ -151,10 +155,17 @@ function download(mangaObj) {
                     if (!fs.existsSync(dir)){
                         fs.mkdirSync(dir);
                     }
-                    request(img_link).pipe(fs.createWriteStream(downloadDir+'/'+((a++)+1)+'.jpg')).on('finish', function(response) {         
-                        console.log("Download Completed : "+(++b));
+                    request(img_link).pipe(fs.createWriteStream(downloadDir+'/'+((a++)+1)+'.jpg')).on('finish', function() {         
+                        console.log(mangaObj.chapter_name+" : Downloading - "+(++b)+' of '+page);
                         if(b==page) {
-                            console.log('\nDownloading Completed : '+mangaObj.chapter_name+' ('+Title+')\n');
+                            console.log('\nDownloading Completed : '+mangaObj.chapter_name+' ('+Title+')');
+                            if(argv.c && argv.r) {
+                                chap++;
+                                if(chap<(argv.r+1)) {
+                                    download(main_list[chap-1]);
+                                } 
+                            }
+                                                   
                         }
                         });
                 });
@@ -175,25 +186,14 @@ function download(mangaObj) {
 
     // function downloadLoop(urls) {
     //     for(i=0;i<urls.length;i++){
-    //         request(urls[i]).pipe(fs.createWriteStream('Chapter_0/'+(i+1)+'.jpg')).on('finish', function(response) {         
-    //             console.log("Download Completed : "+(++b)+'/'+i);
-    //             });
+    //         request(urls[i]).pipe(fs.createWriteStream(downloadDir+'/'+((a++)+1)+'.jpg')).on('finish', function(response) {         
+    //             console.log(mangaObj.chapter_name+" : Downloading - "+(++b)+' of '+page);
+    //             if(b==page) {
+    //                 console.log('\nDownloading Completed : '+mangaObj.chapter_name+' ('+Title+')\n');
+    //                 d =1;                        
+    //             }
+    //         });
             
     //     }
     // }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
