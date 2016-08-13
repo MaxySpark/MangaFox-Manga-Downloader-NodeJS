@@ -119,6 +119,7 @@ function download(mangaObj) {
     var Volume = mangaObj.volume_name;
     var Chapter = mangaObj.chapter;
     var Title = mangaObj.chapter_title;
+    Title = Title.replace(/\<|\>|\:|\"|\/|\\|\||\?|\*/g,'');
     if(Title.length >70) {
         Title = 'Chapter '+mangaObj.id;
     }
