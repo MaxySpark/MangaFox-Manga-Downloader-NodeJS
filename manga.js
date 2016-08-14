@@ -127,15 +127,26 @@ request({
                 var serialNumber = readlineSync.question('\nEnter The Serial Number Of The Chapter You Want To Download : ');
                 chap = parseInt(serialNumber);
              }
+             
+             if(chap < 1 || chap > main_list.length) {
+                 console.log('Entered Serial Number Is Not Exist Please Check The Entered Serial Number and try Again');
+             } else {
+                download(main_list[(chap-1)]);
+             }
             
-            download(main_list[(chap-1)]);
         } else if(index+1==2) {
             console.log('\nFirst Enter The Serial Number Of The Chapter From Which You Want To Start Download Then Enter The Serial Number To Which You Want To Download');
             var chap_beg = readlineSync.question('\nEnter The Serial Number Of The Chapter From Which You Want To Start Download : ');
             chap = parseInt(chap_beg);
             var chap_end = readlineSync.question('\nEnter The Serial Number Of The Chapter To Which You Want To Download : ');
             chap_to = parseInt(chap_end);
-            download(main_list[(chap-1)]);
+            
+            if(chap < 1 || chap > main_list.length || chap_to > main_list.length) {
+                console.log('Entered Serial Number Is Not Exist Please Check The Entered Serial Number and try Again');
+            } else {
+                download(main_list[(chap-1)]);
+            }
+            
         }
         
         
