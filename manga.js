@@ -194,7 +194,11 @@ function download(mangaObj) {
                                 chap++;
                                 if(chap<(chap_to+1)) {
                                     download(main_list[chap-1]);
-                                } 
+                                } else {
+                                    console.log('\nDownload Directory : '+__dirname+'\\downloads\\');
+                                }
+                            } else {
+                                console.log('\nDownload Directory : '+__dirname+'\\downloads\\');
                             }
                                                    
                         }
