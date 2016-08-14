@@ -136,7 +136,7 @@ function download(mangaObj) {
         request({
             url: url,
             gzip: true,
-            json: true
+            // json: true
         },
         (err,res,body) => {
             if(err) throw err;
@@ -173,9 +173,10 @@ function download(mangaObj) {
                 $(".read_img > a").each(function() {
                     nextUrl = $(this).attr('href');
                     // console.log(nextUrl);
-                })           
+                });           
                 if(nextUrl != "javascript:void(0);") {
                     nextUrl = urlMain + Volume +'/'+Chapter+'/'+nextUrl;
+                    console.log(nextUrl);
                     readNextRequest(nextUrl);
                 } else {
                     // downloadLoop(images);

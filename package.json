@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^0.20.0",
+    "readline-sync": "^1.4.4",
     "request": "^2.74.0",
     "yargs": "^4.8.1"
   }
