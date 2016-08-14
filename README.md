@@ -7,6 +7,8 @@ Requirement `node.js`
 
 Download The Repository or Clone it Then- -
 
+Download The Repo As ZIP [**_CLICK HERE_**](https://github.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/archive/master.zip)
+
 ####_FOR WINDOWS USERS JUST OPEN THE `windows.bat` FILE_
 
 ###first open a terminal in the folder and enter the commands
