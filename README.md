@@ -50,6 +50,6 @@ Download The Repository or Clone it Then- -
 ![Scrrenshot 10](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga10.JPG "Scrrenshot 10")
 
 ##For Command Line Use
->#####`node manga -n <manga name> -c <chapter Serial Number> -r <next serial number>
+>#####`node manga -n <manga name> -c <chapter Serial Number> -r <next serial number>`
 
 >###[_MaxySpark_](http://maxyspark.com)
