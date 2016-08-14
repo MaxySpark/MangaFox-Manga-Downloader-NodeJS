@@ -3,6 +3,8 @@ MangaFox Manga Downloader Using NodeJS
 
 Requirement `node.js`
 
+#####If you have not installed yet download `NodeJS` from [_HERE_](https://nodejs.org/en/download/) 
+
 Download The Repository or Clone it Then- -
 
 ####_FOR WINDOWS USERS JUST OPEN THE `windows.bat` FILE_
