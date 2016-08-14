@@ -33,9 +33,9 @@ var manga;
 console.log("This Script Is Written By MaxySpark\n");
 if(!argv.name) {
     manga = readlineSync.question('Enter The Name Of The Manga : [ eg - Bleach ] : ');
-    manga.toLowerCase;
+    manga = manga.toLowerCase().trim();
 } else {
-    manga = argv.name.toLowerCase();
+    manga = argv.name.toLowerCase().trim();
 }
 console.log('\nPlease Wait... Getting Chapters - ');
 console.log('[Serial Number]\t\t[ Chapter Name ]\n');
@@ -117,11 +117,12 @@ request({
         main_list.forEach(function(element) {
             console.log('['+element.id+'] \t'+element.chapter_name+' '+element.chapter_title);
         });
-        console.log('\nDownload Options - ');
-        var options = ['Download Single Chapter','Download Chapter In Range! '];
-       
-        var index = readlineSync.keyInSelect(options, 'Select Options');
         
+        if(!argv.c) {
+            console.log('\nDownload Options - ');
+            var options = ['Download Single Chapter','Download Chapter In Range! '];
+            var index = readlineSync.keyInSelect(options, 'Select Options');
+        }
         if(index+1==1) {
             if(!chap) { 
                 var serialNumber = readlineSync.question('\nEnter The Serial Number Of The Chapter You Want To Download : ');
@@ -148,11 +149,13 @@ request({
             }
             
         }
-        
-        
-            
-            
-       
+        if(argv.c) {
+            if(argv.c < 1 ||argv.c > main_list.length || argv.r > main_list.length) {
+                console.log('Entered Serial Number Is Not Exist Please Check The Entered Serial Number and try Again');
+            } else {
+                download(main_list[(chap-1)]);
+            }
+        }    
     }
 });
 function download(mangaObj) {
