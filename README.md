@@ -4,6 +4,9 @@ MangaFox Manga Downloader Using NodeJS
 Requirement `node.js`
 
 Download The Repository or Clone it Then- -
+
+####_FOR WINDOWS USERS JUST OPEN THE `windows.bat` FILE_
+
 ###first open a terminal in the folder and enter the commands
 ####`$ npm install`
 ####`$ node manga`
@@ -45,5 +48,8 @@ Download The Repository or Clone it Then- -
 >The Downloaded Files Will Be Saved On `folder_of_manga.js_file/downloads/`
 
 ![Scrrenshot 10](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga10.JPG "Scrrenshot 10")
+
+##For Command Line Use
+>#####`node manga -n <manga name> -c <chapter Serial Number> -r <next serial number>
 
 >###[_MaxySpark_](http://maxyspark.com)
