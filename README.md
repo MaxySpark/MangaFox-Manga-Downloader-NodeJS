@@ -46,4 +46,4 @@ Download The Repository or Clone it Then- -
 
 ![Scrrenshot 10](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga10.JPG "Scrrenshot 10")
 
->[###_MaxySpark_](http://maxyspark.com)
+>###[_MaxySpark_](http://maxyspark.com)
