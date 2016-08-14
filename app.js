@@ -1,15 +1,16 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
+var readlineSync = require('readline-sync');
 var argv = require('yargs').option({
     name : {
-        demand : true,
+        // demand : true,
         alias:[ 'n'],
         description: "Name Of The Manga",
         type: 'string'
     },
     chapter : {
-        demand : true,
+        // demand : true,
         alias:[ 'ch','c','cn'],
         description: "Number Of The Manga Chapter",
         type: 'number'
@@ -27,11 +28,22 @@ var images = [], volumes= [], main_list = [];
 
 var nextUrl;
 var dirName,dirName2;
-var manga = argv.name.toLowerCase();
+var manga;
+
+console.log("This Script Is Written By MaxySpark\n");
+if(!argv.name) {
+    manga = readlineSync.question('Enter The Name Of The Manga : [ eg - Bleach ] : ');
+    manga.toLowerCase;
+} else {
+    manga = argv.name.toLowerCase();
+}
+console.log('\nPlease Wait... Getting Chapters - ');
+console.log('[Serial Number]\t\t[ Chapter Name ]\n');
 var mangaName = manga.replace(/ /g, "_");
 var urlMain = "http://mangafox.me/manga/"+mangaName+"/";
 
 var chap = argv.c;
+var chap_to = argv.r;
 request({
     url: urlMain
 },(err, res, body) => {
@@ -103,11 +115,29 @@ request({
         main_list.reverse();
 
         main_list.forEach(function(element) {
-            console.log('('+element.id+') '+element.chapter_name+' '+element.chapter_title);
+            console.log('['+element.id+'] \t'+element.chapter_name+' '+element.chapter_title);
         });
+        console.log('\nDownload Options - ');
+        var options = ['Download Single Chapter','Download Chapter In Range! '];
+       
+        var index = readlineSync.keyInSelect(options, 'Select Options');
         
+        if(index+1==1) {
+            if(!chap) { 
+                var serialNumber = readlineSync.question('\nEnter The Serial Number Of The Chapter You Want To Download : ');
+                chap = parseInt(serialNumber);
+             }
+            
+            download(main_list[(chap-1)]);
+        } else if(index+1==2) {
+            console.log('\nFirst Enter The Serial Number Of The Chapter From Which You Want To Start Download Then Enter The Serial Number To Which You Want To Download');
+            var chap_beg = readlineSync.question('\nEnter The Serial Number Of The Chapter From Which You Want To Start Download : ');
+            chap = parseInt(chap_beg);
+            var chap_end = readlineSync.question('\nEnter The Serial Number Of The Chapter To Which You Want To Download : ');
+            chap_to = parseInt(chap_end);
+            download(main_list[(chap-1)]);
+        }
         
-        download(main_list[argv.c - 1]);
         
             
             
@@ -160,9 +190,9 @@ function download(mangaObj) {
                         console.log(mangaObj.chapter_name+" : Downloading - "+(++b)+' of '+page);
                         if(b==page) {
                             console.log('\nDownloading Completed : '+mangaObj.chapter_name+' ('+Title+')');
-                            if(argv.c && argv.r) {
+                            if(chap && chap_to) {
                                 chap++;
-                                if(chap<(argv.r+1)) {
+                                if(chap<(chap_to+1)) {
                                     download(main_list[chap-1]);
                                 } 
                             }
@@ -176,7 +206,7 @@ function download(mangaObj) {
                 });           
                 if(nextUrl != "javascript:void(0);") {
                     nextUrl = urlMain + Volume +'/'+Chapter+'/'+nextUrl;
-                    console.log(nextUrl);
+                    // console.log(nextUrl);
                     readNextRequest(nextUrl);
                 } else {
                     // downloadLoop(images);
