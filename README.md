@@ -30,7 +30,7 @@ Download The Repository or Clone it Then- -
 
 ![Scrrenshot 6](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga6.JPG "Scrrenshot 6")
 
->Option 2. To Download Chapter In A Series (Example: To Download One Piece Chapter 808 to 813 [Sereial Number 809 to 8014] )
+>Option 2. To Download Chapter In A Series (Example: To Download One Piece Chapter 808 to 813 [Sereial Number 809 to 814] )
 
 ![Scrrenshot 7](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga7.JPG "Scrrenshot 7")
 
@@ -46,4 +46,4 @@ Download The Repository or Clone it Then- -
 
 ![Scrrenshot 10](https://raw.githubusercontent.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/master/screenshots/manga10.JPG "Scrrenshot 10")
 
->#####_MaxySpark_
+>[###_MaxySpark_](http://maxyspark.com)
