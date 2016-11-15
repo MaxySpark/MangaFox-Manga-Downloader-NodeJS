@@ -4,7 +4,7 @@
   "description": "Download Manga",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node manga"
   },
   "author": "MaxySpark",
   "license": "ISC",

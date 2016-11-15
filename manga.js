@@ -200,7 +200,7 @@ function download(mangaObj) {
                     if (!fs.existsSync(dir)){
                         fs.mkdirSync(dir);
                     }
-                    request(img_link).pipe(fs.createWriteStream(downloadDir+'/'+((a++)+1)+'.jpg')).on('finish', function() {         
+                    request(img_link).pipe(fs.createWriteStream(downloadDir+'/'+((a++)+1)+'.jpg')).on('end', function() {         
                         console.log(mangaObj.chapter_name+" : Downloading - "+(++b)+' of '+page);
                         if(b==page) {
                             console.log('\nDownloading Completed : '+mangaObj.chapter_name+' ('+Title+')');
