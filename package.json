@@ -6,6 +6,14 @@
   "scripts": {
     "start": "node manga"
   },
+ "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS.git"
+  },
+ "bugs": {
+    "url": "https://github.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS/issues"
+  },
+  "homepage": "https://github.com/MaxySpark/MangaFox-Manga-Downloader-NodeJS#readme",
   "author": "MaxySpark",
   "license": "ISC",
   "dependencies": {
