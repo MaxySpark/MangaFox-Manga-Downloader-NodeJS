@@ -115,7 +115,7 @@ request({
         main_list.reverse();
 
         main_list.forEach(function(element) {
-            console.log('['+element.id+'] \t'+element.chapter_name+' '+element.chapter_title);
+            console.log('['+element.id+'] \t'+element.chapter_name);
         });
         
         if(!argv.c) {
@@ -168,11 +168,11 @@ function download(mangaObj) {
         Title = 'Chapter '+mangaObj.id;
     }
     dirName2 = './downloads/'+dirName;
-    var dir = "./downloads/"+dirName+'/'+mangaObj.chapter_name+' ('+Title+')'; 
-    var downloadDir = "downloads/"+dirName+'/'+mangaObj.chapter_name+' ('+Title+')';
+    var dir = "./downloads/"+dirName+'/'+mangaObj.chapter_name; 
+    var downloadDir = "downloads/"+dirName+'/'+mangaObj.chapter_name;
     var Furl = mangaObj.url;
     var page = 0;
-    console.log('\nNow Downloading : '+mangaObj.chapter_name+' ('+Title+')\n');
+    console.log('\nNow Downloading : '+mangaObj.chapter_name+'\n');
 
     readNextRequest(Furl);    
     
@@ -203,7 +203,7 @@ function download(mangaObj) {
                     request(img_link).pipe(fs.createWriteStream(downloadDir+'/'+((a++)+1)+'.jpg')).on('finish', function() {         
                         console.log(mangaObj.chapter_name+" : Downloading - "+(++b)+' of '+page);
                         if(b==page) {
-                            console.log('\nDownloading Completed : '+mangaObj.chapter_name+' ('+Title+')');
+                            console.log('\nDownloading Completed : '+mangaObj.chapter_name);
                             if(chap && chap_to) {
                                 chap++;
                                 if(chap<(chap_to+1)) {
